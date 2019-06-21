@@ -8,6 +8,7 @@ services:
     container_name: "prometheus"
     ports:
       - "9090:9090"
+    restart: always
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
@@ -20,6 +21,7 @@ services:
     container_name: "grafana"
     ports:
       - "3000:3000"
+    restart: always
     volumes:
       - ./grafana/datasources:/etc/grafana/datasources
       - ./grafana/dashboards:/etc/grafana/dashboards
@@ -52,6 +54,7 @@ services:
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
       - "9100:9100"
+    restart: always
     networks:
       - monitor-net
     labels:
@@ -67,6 +70,7 @@ services:
       #- /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
     ports:
       - "8080:8080"
+    restart: always
     networks:
       - monitor-net
     labels:
@@ -74,9 +78,9 @@ services:
   pushgateway:
     image: prom/pushgateway
     container_name: pushgateway
-    restart: unless-stopped
     ports:
       - "9091:9091"
+    restart: always
     networks:
       - monitor-net
     labels:
