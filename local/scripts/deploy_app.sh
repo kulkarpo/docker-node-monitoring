@@ -26,5 +26,5 @@ curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compo
 chmod +x /usr/local/bin/docker-compose
 cd ..
 sudo chmod 777 ./grafana/setup.sh
-sudo docker-compose up --build &
-read -p "Press enter to Exit"
+sudo docker-compose up --build & echo "Alright! we're good now"
+#read -p "Press enter to Exit"
